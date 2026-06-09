@@ -398,6 +398,28 @@
             transform: translateY(-2px);
         }
 
+        .btn-secondary {
+            background: var(--orange);
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            padding: 13px 28px;
+            font-family: 'Outfit', sans-serif;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: background 0.2s, transform 0.2s;
+        }
+
+        .btn-secondary:hover {
+            background: var(--orange2);
+            transform: translateY(-2px);
+        }
+
         /* Social icons */
         .social-row {
             display: flex;
@@ -472,10 +494,19 @@
             opacity: 0.9;
         }
 
+        /* avatar image */
+        .avatar-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+            z-index: 1;
+        }
+
         /* floating badge */
         .avatar-badge {
             position: absolute;
-            bottom: 20px;
+            bottom: -15px;
             left: 50%;
             transform: translateX(-50%);
             background: var(--bg2);
@@ -489,6 +520,7 @@
             display: flex;
             align-items: center;
             gap: 7px;
+            z-index: 2; /* Keep badge on top of image */
         }
 
         .avail-dot {
@@ -514,9 +546,13 @@
             }
         }
 
+        .tech-pill-wrap {
+            position: absolute;
+            z-index: 3;
+        }
+
         /* floating tech pill */
         .tech-pill {
-            position: absolute;
             background: var(--bg2);
             border: 1px solid var(--border);
             border-radius: 24px;
@@ -528,6 +564,7 @@
             display: flex;
             align-items: center;
             gap: 8px;
+            transition: transform 0.25s cubic-bezier(0.215, 0.61, 0.355, 1);
         }
 
         .tech-pill .dot {
@@ -536,20 +573,38 @@
             border-radius: 50%;
         }
 
+        @keyframes float-y-1 {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+
+        @keyframes float-y-2 {
+            0%, 100% { transform: translateY(-50%); }
+            50% { transform: translateY(-50%) translateY(-10px); }
+        }
+
+        @keyframes float-y-3 {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+
         .pill-1 {
             top: 40px;
             right: -10px;
+            animation: float-y-1 4s ease-in-out infinite;
         }
 
         .pill-2 {
             top: 50%;
             left: -30px;
             transform: translateY(-50%);
+            animation: float-y-2 4.5s ease-in-out infinite;
         }
 
         .pill-3 {
             bottom: 80px;
             right: -20px;
+            animation: float-y-3 5s ease-in-out infinite;
         }
 
         /* ── STATS BAR ── */
@@ -593,9 +648,123 @@
             margin-top: 6px;
         }
 
+        /* ── EDUCATION ── */
+        #education {
+            background: var(--bg);
+        }
+
+        .education-timeline {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .edu-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 36px;
+            position: relative;
+            overflow: hidden;
+            transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
+        }
+
+        .edu-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--orange), var(--orange2));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s;
+        }
+
+        .edu-card:hover {
+            border-color: var(--border2);
+            transform: translateY(-4px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 107, 43, 0.1);
+        }
+
+        .edu-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .edu-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 20px;
+            margin-bottom: 24px;
+        }
+
+        .edu-degree {
+            font-family: 'Syne', sans-serif;
+            font-weight: 800;
+            font-size: 22px;
+            color: var(--text);
+            letter-spacing: -0.5px;
+            line-height: 1.3;
+            margin-bottom: 6px;
+        }
+
+        .edu-institute {
+            font-size: 15px;
+            font-weight: 500;
+            color: var(--orange);
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+
+        .edu-uni {
+            color: var(--text2);
+            font-weight: 400;
+            font-size: 14px;
+        }
+
+        .edu-year {
+            font-family: 'Syne', sans-serif;
+            font-weight: 800;
+            font-size: 16px;
+            color: var(--text2);
+            background: rgba(255, 107, 43, 0.08);
+            border: 1px solid var(--border2);
+            border-radius: 8px;
+            padding: 6px 14px;
+            white-space: nowrap;
+        }
+
+        .edu-coursework-title {
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--text3);
+            margin-bottom: 12px;
+        }
+
+        @media (max-width: 768px) {
+            .edu-header {
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            .edu-card {
+                padding: 24px;
+            }
+
+            .edu-degree {
+                font-size: 18px;
+            }
+        }
+
         /* ── SKILLS ── */
         #skills {
-            background: var(--bg);
+            background: var(--bg2);
         }
 
         .skills-grid {
@@ -675,7 +844,7 @@
 
         /* ── PROJECTS ── */
         #projects {
-            background: var(--bg2);
+            background: var(--bg);
         }
 
         .projects-list {
@@ -830,7 +999,7 @@
 
         /* ── CERTS ── */
         #certs {
-            background: var(--bg);
+            background: var(--bg2);
         }
 
         .certs-grid {
@@ -891,7 +1060,7 @@
 
         /* ── CONTACT ── */
         #contact {
-            background: var(--bg2);
+            background: var(--bg);
         }
 
         .contact-sub {
@@ -961,7 +1130,7 @@
 
         /* ── FOOTER ── */
         footer {
-            background: var(--bg);
+            background: var(--bg2);
             border-top: 1px solid var(--border);
             padding: 32px 0;
         }
@@ -1131,6 +1300,7 @@
             <a href="#" class="logo">Abhay.</a>
             <ul class="nav-links">
                 <li><a href="#hero">Home</a></li>
+                <li><a href="#education">Education</a></li>
                 <li><a href="#skills">Skills</a></li>
                 <li><a href="#projects">Projects</a></li>
                 <li><a href="#certs">Certs</a></li>
@@ -1140,6 +1310,7 @@
         </div>
         <div class="mobile-menu" id="mobileMenu">
             <a href="#hero">Home</a>
+            <a href="#education">Education</a>
             <a href="#skills">Skills</a>
             <a href="#projects">Projects</a>
             <a href="#certs">Certs</a>
@@ -1166,6 +1337,7 @@
                         <div class="hero-btns">
                             <a href="#contact" class="btn-orange">Hire Me</a>
                             <a href="#projects" class="btn-ghost">View Projects</a>
+                            <a href="Abhay_Choudhary_Resume.pdf" target="_blank" download="Abhay_Choudhary_Resume.pdf" class="btn-secondary">Download Resume</a>
                         </div>
                         <div class="social-row">
                             <a href="https://github.com/Abhay12ch" target="_blank" rel="noopener noreferrer"
@@ -1202,18 +1374,21 @@
                     <div class="hero-right fade" style="display:flex; justify-content:center;">
                         <div class="avatar-wrap">
                             <!-- floating pills -->
-                            <div class="tech-pill pill-1"><span class="dot" style="background:#FF6B2B;"></span>LangChain
+                            <div class="tech-pill-wrap pill-1">
+                                <div class="tech-pill"><span class="dot" style="background:#ef4444;"></span>LangChain</div>
                             </div>
-                            <div class="tech-pill pill-2"><span class="dot" style="background:#4ade80;"></span>MERN
-                                Stack</div>
-                            <div class="tech-pill pill-3"><span class="dot" style="background:#60a5fa;"></span>RAG ·
-                                FAISS</div>
+                            <div class="tech-pill-wrap pill-2">
+                                <div class="tech-pill"><span class="dot" style="background:#4ade80;"></span>MERN Stack</div>
+                            </div>
+                            <div class="tech-pill-wrap pill-3">
+                                <div class="tech-pill"><span class="dot" style="background:#60a5fa;"></span>RAG · FAISS</div>
+                            </div>
 
                             <div class="avatar-circle-bg">
-                                <div class="avatar-initials">AC</div>
+                                <img src="profile.jpg" alt="Abhay Choudhary" class="avatar-img">
                                 <div class="avatar-badge">
                                     <span class="avail-dot"></span>
-                                    Open to internships
+                                    Open to work
                                 </div>
                             </div>
                         </div>
@@ -1240,6 +1415,37 @@
                 </div>
             </div>
         </div>
+
+        <!-- EDUCATION -->
+        <section id="education">
+            <div class="container">
+                <div class="fade">
+                    <div class="sec-label">Learning Journey</div>
+                    <h2 class="sec-title">My <span>Education</span></h2>
+                </div>
+                <div class="education-timeline">
+                    <div class="edu-card fade">
+                        <div class="edu-header">
+                            <div class="edu-title-group">
+                                <h3 class="edu-degree">B.Tech in Computer Science &amp; Information Technology</h3>
+                                <div class="edu-institute">MIET, Meerut <span class="edu-uni">(Dr. A.P.J. Abdul Kalam Technical University)</span></div>
+                            </div>
+                            <div class="edu-year">2023 – 2027</div>
+                        </div>
+                        <div class="edu-details">
+                            <div class="edu-coursework-title">Relevant Coursework</div>
+                            <div class="tags">
+                                <span class="tag">DSA</span>
+                                <span class="tag">DBMS</span>
+                                <span class="tag">OS</span>
+                                <span class="tag">Computer Networks</span>
+                                <span class="tag">Machine Learning</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
         <!-- SKILLS -->
         <section id="skills">
@@ -1512,6 +1718,40 @@
             });
         }, { threshold: 0.4 });
         sections.forEach(s => aobs.observe(s));
+
+        // Magnetic Mouse Evasion for Tech Pills
+        const techPills = document.querySelectorAll('.tech-pill');
+        document.addEventListener('mousemove', (e) => {
+            const mouseX = e.clientX;
+            const mouseY = e.clientY;
+            
+            techPills.forEach(pill => {
+                const rect = pill.getBoundingClientRect();
+                const pillX = rect.left + rect.width / 2;
+                const pillY = rect.top + rect.height / 2;
+                
+                const diffX = pillX - mouseX;
+                const diffY = pillY - mouseY;
+                
+                const distance = Math.hypot(diffX, diffY);
+                const threshold = 120; // Repulsion range in px
+                
+                if (distance < threshold) {
+                    const force = (threshold - distance) / threshold;
+                    const strength = 35; // Max push displacement in px
+                    
+                    const dirX = diffX / distance;
+                    const dirY = diffY / distance;
+                    
+                    const translateX = dirX * force * strength;
+                    const translateY = dirY * force * strength;
+                    
+                    pill.style.transform = `translate(${translateX}px, ${translateY}px)`;
+                } else {
+                    pill.style.transform = `translate(0px, 0px)`;
+                }
+            });
+        });
     </script>
 </body>
 
