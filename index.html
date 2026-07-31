@@ -520,7 +520,8 @@
             display: flex;
             align-items: center;
             gap: 7px;
-            z-index: 2; /* Keep badge on top of image */
+            z-index: 2;
+            /* Keep badge on top of image */
         }
 
         .avail-dot {
@@ -574,18 +575,39 @@
         }
 
         @keyframes float-y-1 {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-8px); }
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-8px);
+            }
         }
 
         @keyframes float-y-2 {
-            0%, 100% { transform: translateY(-50%); }
-            50% { transform: translateY(-50%) translateY(-10px); }
+
+            0%,
+            100% {
+                transform: translateY(-50%);
+            }
+
+            50% {
+                transform: translateY(-50%) translateY(-10px);
+            }
         }
 
         @keyframes float-y-3 {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-8px); }
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-8px);
+            }
         }
 
         .pill-1 {
@@ -1337,7 +1359,8 @@
                         <div class="hero-btns">
                             <a href="#contact" class="btn-orange">Hire Me</a>
                             <a href="#projects" class="btn-ghost">View Projects</a>
-                            <a href="Abhay_Choudhary_Resume.pdf" target="_blank" download="Abhay_Choudhary_Resume.pdf" class="btn-secondary">Download Resume</a>
+                            <a href="Abhay_Choudhary_Resume.pdf" target="_blank" download="Abhay_Choudhary_Resume.pdf"
+                                class="btn-secondary">Download Resume</a>
                         </div>
                         <div class="social-row">
                             <a href="https://github.com/Abhay12ch" target="_blank" rel="noopener noreferrer"
@@ -1375,13 +1398,16 @@
                         <div class="avatar-wrap">
                             <!-- floating pills -->
                             <div class="tech-pill-wrap pill-1">
-                                <div class="tech-pill"><span class="dot" style="background:#ef4444;"></span>LangChain</div>
+                                <div class="tech-pill"><span class="dot" style="background:#ef4444;"></span>LangChain
+                                </div>
                             </div>
                             <div class="tech-pill-wrap pill-2">
-                                <div class="tech-pill"><span class="dot" style="background:#4ade80;"></span>MERN Stack</div>
+                                <div class="tech-pill"><span class="dot" style="background:#4ade80;"></span>MERN Stack
+                                </div>
                             </div>
                             <div class="tech-pill-wrap pill-3">
-                                <div class="tech-pill"><span class="dot" style="background:#60a5fa;"></span>RAG · FAISS</div>
+                                <div class="tech-pill"><span class="dot" style="background:#60a5fa;"></span>RAG · FAISS
+                                </div>
                             </div>
 
                             <div class="avatar-circle-bg">
@@ -1428,7 +1454,8 @@
                         <div class="edu-header">
                             <div class="edu-title-group">
                                 <h3 class="edu-degree">B.Tech in Computer Science &amp; Information Technology</h3>
-                                <div class="edu-institute">MIET, Meerut <span class="edu-uni">(Dr. A.P.J. Abdul Kalam Technical University)</span></div>
+                                <div class="edu-institute">MIET, Meerut <span class="edu-uni">(Dr. A.P.J. Abdul Kalam
+                                        Technical University)</span></div>
                             </div>
                             <div class="edu-year">2023 – 2027</div>
                         </div>
@@ -1492,6 +1519,9 @@
                             <span class="tag">Git</span>
                             <span class="tag">GitHub</span>
                             <span class="tag">Vercel</span>
+                            <span class="tag">AWS</span>
+                            <span class="tag">EC2</span>
+                            <span class="tag">S3</span>
                             <span class="tag">FastAPI</span>
                             <span class="tag">MySQL</span>
                             <span class="tag">UiPath RPA</span>
@@ -1529,8 +1559,8 @@
                             <span class="tag">Vercel</span>
                         </div>
                         <div class="proj-btns">
-                            <a href="https://contract-guard-de6r.vercel.app/" target="_blank"
-                                rel="noopener noreferrer" class="btn-sm btn-sm-fill">↗ Live Demo</a>
+                            <a href="https://contract-guard-de6r.vercel.app/" target="_blank" rel="noopener noreferrer"
+                                class="btn-sm btn-sm-fill">↗ Live Demo</a>
                             <a href="https://github.com/Abhay12ch/ContractGuard" target="_blank"
                                 rel="noopener noreferrer" class="btn-sm btn-sm-line">GitHub</a>
                         </div>
@@ -1586,6 +1616,22 @@
                             <div class="cert-name">Building AI Agents with MongoDB</div>
                             <div class="cert-issuer">MongoDB</div>
                             <div class="cert-date">Mar 2025</div>
+                        </div>
+                    </div>
+                    <div class="cert-card fade">
+                        <div class="cert-icon">☁️</div>
+                        <div>
+                            <div class="cert-name">AWS Certified Cloud Practitioner</div>
+                            <div class="cert-issuer">AWS</div>
+                            <div class="cert-date">2026</div>
+                        </div>
+                    </div>
+                    <div class="cert-card fade">
+                        <div class="cert-icon">🧠</div>
+                        <div>
+                            <div class="cert-name">AWS Certified AI Practitioner</div>
+                            <div class="cert-issuer">AWS</div>
+                            <div class="cert-date">2026</div>
                         </div>
                     </div>
                 </div>
@@ -1724,28 +1770,28 @@
         document.addEventListener('mousemove', (e) => {
             const mouseX = e.clientX;
             const mouseY = e.clientY;
-            
+
             techPills.forEach(pill => {
                 const rect = pill.getBoundingClientRect();
                 const pillX = rect.left + rect.width / 2;
                 const pillY = rect.top + rect.height / 2;
-                
+
                 const diffX = pillX - mouseX;
                 const diffY = pillY - mouseY;
-                
+
                 const distance = Math.hypot(diffX, diffY);
                 const threshold = 120; // Repulsion range in px
-                
+
                 if (distance < threshold) {
                     const force = (threshold - distance) / threshold;
                     const strength = 35; // Max push displacement in px
-                    
+
                     const dirX = diffX / distance;
                     const dirY = diffY / distance;
-                    
+
                     const translateX = dirX * force * strength;
                     const translateY = dirY * force * strength;
-                    
+
                     pill.style.transform = `translate(${translateX}px, ${translateY}px)`;
                 } else {
                     pill.style.transform = `translate(0px, 0px)`;
